@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
+  <hashTree>
+    <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Update Booking">
+      <stringProp name="HTTPSampler.domain">${url}</stringProp>
+      <stringProp name="HTTPSampler.protocol">https</stringProp>
+      <stringProp name="HTTPSampler.path">booking/${extractedToken}</stringProp>
+      <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+      <stringProp name="HTTPSampler.method">PUT</stringProp>
+      <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+      <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+      <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="" elementType="HTTPArgument">
+            <boolProp name="HTTPArgument.always_encode">false</boolProp>
+            <stringProp name="Argument.value">{&#xd;
+    &quot;firstname&quot; : &quot;James&quot;,&#xd;
+    &quot;lastname&quot; : &quot;Brown&quot;,&#xd;
+    &quot;totalprice&quot; : 111,&#xd;
+    &quot;depositpaid&quot; : true,&#xd;
+    &quot;bookingdates&quot; : {&#xd;
+        &quot;checkin&quot; : &quot;2018-01-01&quot;,&#xd;
+        &quot;checkout&quot; : &quot;2019-01-01&quot;&#xd;
+    },&#xd;
+    &quot;additionalneeds&quot; : &quot;Breakfast&quot;&#xd;
+}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </elementProp>
+    </HTTPSamplerProxy>
+    <hashTree>
+      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+        <collectionProp name="HeaderManager.headers">
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">Content-Type</stringProp>
+            <stringProp name="Header.value">application/json</stringProp>
+          </elementProp>
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">Accept</stringProp>
+            <stringProp name="Header.value">application/json</stringProp>
+          </elementProp>
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">Cookie</stringProp>
+            <stringProp name="Header.value">token=${extractedToken}</stringProp>
+          </elementProp>
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">Authorization</stringProp>
+            <stringProp name="Header.value">Basic YWRtaW46cGFzc3dvcmQxMjM=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </HeaderManager>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
